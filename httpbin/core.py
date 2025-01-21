@@ -85,6 +85,8 @@ tmpl_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "templates")
 app = Flask(__name__, template_folder=tmpl_dir)
 app.debug = bool(os.environ.get("DEBUG"))
 app.config["JSONIFY_PRETTYPRINT_REGULAR"] = True
+app.config["MAX_CONTENT_LENGTH"] = 1024 * 1024 * 1024 * 10  # 10 GB
+app.config["MAX_FORM_MEMORY_SIZE"] = app.config["MAX_CONTENT_LENGTH"]
 
 app.add_template_global("HTTPBIN_TRACKING" in os.environ, name="tracking_enabled")
 
@@ -195,7 +197,6 @@ empties the input request stream.
 - flask will hang and does not seem to properly terminate the request, so
   we explicitly deny chunked requests.
 """
-
 
 @app.before_request
 def before_request():
