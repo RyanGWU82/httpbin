@@ -430,6 +430,24 @@ def view_post():
     )
 
 
+@app.route("/post-no-data", methods=("POST",))
+def view_post_no_data():
+    """The request's POST parameters.
+    ---
+    tags:
+      - HTTP Methods
+    produces:
+      - application/json
+    responses:
+      200:
+        description: The request's POST parameters.
+    """
+
+    return jsonify(
+        get_dict("url", "args", "form", "origin", "headers", "files", "json")
+    )
+
+
 @app.route("/put", methods=("PUT",))
 def view_put():
     """The request's PUT parameters.
