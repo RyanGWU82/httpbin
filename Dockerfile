@@ -13,9 +13,6 @@ RUN apt-get update -y && apt-get install python3-pip libssl-dev libffi-dev git l
 
 ADD . .
 
-RUN setcap CAP_NET_BIND_SERVICE=+eip /usr/bin/python3.10
-EXPOSE 80
-
 ENV PATH="/httpbin/.local/bin:$PATH"
 
 RUN pip3 install --no-cache-dir pipenv
