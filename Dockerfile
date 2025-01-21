@@ -21,4 +21,4 @@ ENV PATH="/httpbin/.local/bin:$PATH"
 RUN pip3 install --no-cache-dir pipenv
 RUN pipenv sync
 
-CMD ["pipenv", "run", "gunicorn", "-b", "0.0.0.0:$PORT", "httpbin:app", "-k", "gevent"]
+CMD ["pipenv", "run", "gunicorn", "-b", "127.0.0.1:$PORT", "httpbin:app", "-k", "gevent"]
